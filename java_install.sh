@@ -6,9 +6,8 @@ choice_version(){
     echo "请选择安装选项："
     echo "1. java-1.8.0"
     echo "2. java-17"
-    echo "请输入选项："
     # 根据用户选择执行相应的操作
-    read choice
+    read -p "请输入选项：" choice
     case $choice in
       1)
         echo "开始安装 java-1.8.0"
