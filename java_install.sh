@@ -22,8 +22,6 @@ echo "2. java-17"
 
 read choice
 
-# 定义菜单选项
-options=("选项一" "选项二" "退出")
 
 # 根据用户选择执行相应的操作
 case $choice in
