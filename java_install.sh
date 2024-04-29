@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo yum update 
+sudo yum update
 
 install_jdk(){
     local jdk_version=$1
@@ -11,7 +11,7 @@ install_jdk(){
     if [[ $yum_list_output == *"无匹配的软件包可供显示"* || $yum_list_output == *"No matching Packages to list"* ]]; then
         echo "没有找到可用的 $jdk_version 版本"
     else
-        cho "以下是可用的 $jdk_version 版本："
+        echo "以下是可用的 $jdk_version 版本："
         echo "$yum_list_output"
     fi
 }
@@ -29,7 +29,7 @@ options=("选项一" "选项二" "退出")
 case $choice in
   1)
     echo "开始安装 java-1.8.0"
-    # 在这里编写执行选项一的代码 
+    # 在这里编写执行选项一的代码
     install_jdk "java-1.8.0-openjdk-devel"
     ;;
   2)
