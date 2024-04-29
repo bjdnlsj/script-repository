@@ -7,10 +7,10 @@ install_jdk(){
     # 执行yum命令并将输出保存到临时文件
     yum_list_output=$(yum list available '${jdk_version}' 2>/dev/null)
     # 检查输出是否为空
-    if [ -z "$yum_list_output" ]; then
+    if [[ $output == *"无匹配的软件包可供显示"* || $output == *"No matching Packages to list"* ]]; then
         echo "没有找到可用的 $jdk_version 版本"
     else
-        echo "以下是可用的 $jdk_version 版本："
+         echo "以下是可用的 $jdk_version 版本："
         echo "$yum_list_output"
     fi
 }
