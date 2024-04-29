@@ -2,27 +2,29 @@
 
 sudo yum update
 
+java_version_Arr=("java-1.8.0-openjdk-devel" "java-17-openjdk-devel")
+
 choice_version(){
     echo "请选择安装选项："
-    echo "1. java-1.8.0"
-    echo "2. java-17"
+    for index in "${!java_version_Arr[@]}"; do
+        echo "${index}、${java_version_Arr[$index]}"
+    done
     # 根据用户选择执行相应的操作
     read -p "请输入选项：" choice
-    case $choice in
-      1)
-        echo "开始安装 java-1.8.0"
-        # 在这里编写执行选项一的代码
-        install_jdk "java-1.8.0-openjdk-devel"
-        ;;
-      2)
-        echo "开始安装 java-17"
-        # 在这里编写执行选项二的代码
-        install_jdk "java-17-openjdk-devel"
-        ;;
-      *)
-        echo "无效的选择"
-        ;;
-    esac
+
+    # 判断choice是否为非数字
+    if ! [[ $choice =~ ^[0-9]+$ ]]; then
+        echo "无效选择"
+        exit 1
+    fi
+
+    # 判断choice是否大于数组下标
+    if (( choice >= ${#java_version_Arr[@]} )); then
+        echo "无效选择"
+        exit 1
+    fi
+    echo "开始安装 ${java_version_Arr[$choice]}"
+    install_jdk "${java_version_Arr[$choice]}"
 }
 
 install_jdk(){
@@ -45,6 +47,9 @@ install_jdk(){
     else
         echo "以下是可用的 $jdk_version 版本："
         echo "$yum_list_output"
+
+        # 开始安装
+        yum install -y "$jdk_version"
     fi
 }
 choice_version
