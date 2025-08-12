@@ -29,7 +29,7 @@ eletile_repository_dir='\
 install_maven(){
   local mvn_version=$1
   local dir=$2
-  local url="https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-${mvn_version}-bin.tar.gz"
+  local url="https://dlcdn.apache.org/maven/maven-3/3.9.11/binaries/apache-maven-${mvn_version}-bin.tar.gz"
 
   echo "即将下载的地址：$url"
   echo "即将安装的目录：$dir"
@@ -103,6 +103,6 @@ install_maven(){
   source /etc/profile
   echo "maven下载、安装、配置完成"
 }
-install_maven "3.9.6" "/opt/maven"
+install_maven "3.9.11" "/opt/maven"
 
 exit 0
